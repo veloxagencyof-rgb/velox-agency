@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VELOX Agency — Elite OnlyFans Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #9d50bb; 
+            --accent-light: #be93c5;
+            --bg: #030106; 
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(157, 80, 187, 0.2);
+            --text-main: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.7);
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(3, 1, 6, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo { font-weight: 900; font-size: 24px; letter-spacing: 4px; text-transform: uppercase; }
+        .logo span { 
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.4s;
+            opacity: 0.6;
+        }
+        nav a:hover { opacity: 1; color: var(--accent-light); }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('main.jpg') center center / cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(3,1,6,0.3) 0%, rgba(3,1,6,1) 95%);
+            z-index: 1;
+        }
+
+        .hero-content { position: relative; z-index: 2; max-width: 1100px; padding: 0 20px; }
+
+        .hero h1 {
+            font-size: clamp(32px, 7vw, 70px);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 1.8vw, 20px);
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: var(--text-dim);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background: transparent;
+            color: white;
+            padding: 22px 50px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 3px;
+            transition: 0.5s;
+            display: inline-block;
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 30px rgba(157, 80, 187, 0.15);
+        }
+
+        .btn:hover { background: var(--accent); box-shadow: 0 0 50px rgba(157, 80, 187, 0.4); transform: translateY(-3px); }
+
+        .marquee {
+            background: rgba(157, 80, 187, 0.05);
+            color: var(--text-main);
+            padding: 20px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 13px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .marquee-content { display: inline-block; animation: scroll 30s linear infinite; }
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        section { padding: 120px 10%; max-width: 1500px; margin: 0 auto; }
+        .section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 900; margin-bottom: 60px; text-transform: uppercase; letter-spacing: 2px; }
+
+        .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .why-card { 
+            background: var(--card-bg); padding: 40px; 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 4px; transition: 0.4s; 
+        }
+        .why-card:hover { border-color: var(--accent); transform: translateY(-10px); }
+        .why-card h3 { font-size: 12px; color: var(--accent-light); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; }
+        .why-card h4 { font-size: 18px; margin-bottom: 15px; text-transform: uppercase; }
+        .why-card p { font-size: 14px; line-height: 1.6; color: var(--text-dim); font-weight: 300; margin: 0; }
+
+        .earning-card { border-bottom: 1px solid var(--border); padding: 35px 0; display: flex; justify-content: space-between; align-items: center; }
+        .earning-card h3 { 
+            font-size: 45px; margin: 0; font-weight: 900; 
+            background: linear-gradient(90deg, #fff, var(--accent-light));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+        }
+
+        .stages-container { border-left: 1px solid var(--border); padding-left: 40px; }
+        .stage-item { position: relative; margin-bottom: 50px; }
+        .stage-item::before { content: ''; position: absolute; left: -45.5px; top: 10px; width: 10px; height: 10px; background: #fff; box-shadow: 0 0 15px var(--accent); border-radius: 50%; }
+        .stage-item span { color: var(--accent-light); font-weight: 900; font-size: 14px; display: block; margin-bottom: 5px; }
+
+        footer { padding: 100px 8% 50px; background: #020104; text-align: center; border-top: 1px solid var(--border); }
+
+        @media (max-width: 768px) {
+            header nav { display: none; }
+            .earning-card { flex-direction: column; align-items: flex-start; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">VELOX <span>AGENCY</span></div>
+    <nav>
+        <a href="#about">Про нас</a>
+        <a href="#services">Що ми надаємо</a>
+        <a href="#earnings">Заробіток</a>
+        <a href="#requirements">Вимоги</a>
+        <a href="#stages">Етапи</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Монетизуй свою сексуальність разом з VELOX Agency</h1>
+        <p>Подай свою кандидатуру і почни втілювати свої мрії у реальність вже сьогодні. Ми — велика команда професіоналів, які допомагають дівчатам розкрити свою жіночність та заробити гідні гроші.</p>
+        <a href="https://linktr.ee/veloxofagency" class="btn">Подати кандидатуру</a>
+    </div>
+</section>
+
+<div class="marquee">
+    <div class="marquee-content">
+        &nbsp; VELOX AGENCY • МИ ЧЕКАЄМО НА ТЕБЕ • HIGH EARNINGS • 24/7 SUPPORT • VELOX AGENCY • МИ ЧЕКАЄМО НА ТЕБЕ • HIGH EARNINGS • 24/7 SUPPORT •
+    </div>
+</div>
+
+<section id="about">
+    <h2 class="section-title">Про VELOX</h2>
+    <p style="font-size: 22px; max-width: 950px; font-weight: 300; line-height: 1.8;">
+        <strong>VELOX AGENCY</strong> — велика команда професіоналів, які допомагають дівчатам розкрити свою жіночність та заробити гідні гроші на платформі Онліфанс. 
+        <br><br>
+        <span style="font-size: 16px; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px;">Важливо: Наші моделі не надають послуги інтимного характеру і розпусні дії не здійснюють.</span>
+    </p>
+    
+    <div class="why-grid" style="margin-top: 60px;">
+        <div class="why-card">
+            <h3>Чому ми?</h3>
+            <p>Ми вже кілька років успішно працюємо на ринку та заробили колосальні суми доходу для наших моделей.</p>
+        </div>
+        <div class="why-card">
+            <h3>Команда</h3>
+            <p>У нашій команді велика кількість професіоналів — перекладачів та маркетологів, які працюють 24/7.</p>
+        </div>
+        <div class="why-card">
+            <h3>Масштаб</h3>
+            <p>Наша спільнота VELOX Agency налічує величезні обсяги фанатів на платформі, що гарантує стабільний ріст.</p>
+        </div>
+    </div>
+</section>
+
+<section id="services">
+    <h2 class="section-title">Що ми надаємо?</h2>
+    <div class="why-grid">
+        <div class="why-card">
+            <h4>1. Маркетинг</h4>
+            <p>Повний спектр інструментів — від Facebook, Tik-Tok, Twitter до платних акцій всередині OnlyFans. Ваш дохід піде вже в перший день.</p>
+        </div>
+        <div class="why-card">
+            <h4>2. Контент-менеджмент</h4>
+            <p>Розробляємо план на основі трендів. Ви створюєте лише той контент, який гарантовано принесе дохід.</p>
+        </div>
+        <div class="why-card">
+            <h4>3. Спілкування</h4>
+            <p>Група спеціалістів під керівництвом тимліду спілкується з фанатами у 3 зміни, заробляючи Вам гроші 24/7.</p>
+        </div>
+        <div class="why-card">
+            <h4>4. Безпека</h4>
+            <p>Приділяємо увагу конфіденційності. Ваша сторінка буде доступна лише на обраних територіях (наприклад, США).</p>
+        </div>
+    </div>
+</section>
+
+<section id="earnings">
+    <h2 class="section-title">Заробіток та виплати</h2>
+    <p style="margin-bottom: 40px; font-weight: 300; color: var(--text-dim);">За перший місяць з VELOX реально заробити від $1000. Через 3 місяці дівчата заробляють від $3000 на пасиві.</p>
+    
+    <div class="earning-card">
+        <h3>18%</h3>
+        <p>Для дівчат, які тільки почали працювати</p>
+    </div>
+    <div class="earning-card">
+        <h3>19%</h3>
+        <p>Співпраця більше 3-х місяців</p>
+    </div>
+    <div class="earning-card">
+        <h3>20%</h3>
+        <p>Співпраця більше 6-ти місяців</p>
+    </div>
+    
+    <p style="margin-top: 40px; font-size: 14px; color: var(--accent-light);">* Ми надаємо аванс у розмірі $200 вже через два тижні після запуску.</p>
+</section>
+
+<section id="requirements">
+    <h2 class="section-title">Вимоги до моделей</h2>
+    <div class="why-grid">
+        <div class="why-card">
+            <p>• Доглянутий зовнішній вигляд та підтягнуте тіло.</p>
+            <p>• Контактність та бажання заробляти.</p>
+            <p>• Наявність від 4 годин на день для створення контенту.</p>
+            <p>• Бути завжди на зв'язку.</p>
+            <p style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 12px;">Важливо: Мати будь-який паспорт нового зразку (окрім РФ, РБ).</p>
+        </div>
+    </div>
+</section>
+
+<section id="support">
+    <h2 class="section-title">Повна підтримка</h2>
+    <div class="why-grid">
+        <div class="why-card">
+            <h4>Психолог</h4>
+            <p>Досвідчений фахівець стежить за емоційним станом та допомагає впоратися з труднощами в будь-який час.</p>
+        </div>
+        <div class="why-card">
+            <h4>Фотограф</h4>
+            <p>Маємо власну студію та особистого фотографа. Організовуємо професійні фотосесії повністю за рахунок компанії.</p>
+        </div>
+        <div class="why-card">
+            <h4>Дієтолог</h4>
+            <p>Персоналізовані дієти та онлайн-консультації для підтримки вашого здоров'я та ідеальної форми.</p>
+        </div>
+    </div>
+</section>
+
+<section id="stages">
+    <h2 class="section-title">Етапи роботи</h2>
+    <div class="stages-container">
+        <div class="stage-item">
+            <span>10% — Затвердження</span>
+            <h4>Успішний кастинг</h4>
+            <p>Після знайомства починаємо роботу над вашою анкетою.</p>
+        </div>
+        <div class="stage-item">
+            <span>30% — Верифікація</span>
+            <h4>Реєстрація</h4>
+            <p>Менеджер допомагає пройти верифікацію та відповідає на всі технічні питання.</p>
+        </div>
+        <div class="stage-item">
+            <span>70% — Заповнення</span>
+            <h4>Контент та розкрутка</h4>
+            <p>Розміщуємо готовий контент та відправляємо сторінку на професійну розкрутку командою фахівців.</p>
+        </div>
+        <div class="stage-item">
+            <span>100% — Результат</span>
+            <h4>Масштабування</h4>
+            <p>Складаємо детальний план для щомісячного збільшення вашого доходу.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contacts" style="text-align: center;">
+    <h2 class="section-title" style="text-align: center;">VELOX чекає на тебе</h2>
+    <p style="margin-bottom: 50px; color: var(--text-dim); font-size: 18px;">Почни втілювати свої мрії у реальність вже сьогодні.</p>
+    <a href="https://linktr.ee/veloxofagency" class="btn">Подати заявку</a>
+</section>
+
+<footer>
+    <div class="logo">VELOX <span>AGENCY</span></div>
+    <p style="opacity: 0.3; font-size: 10px; letter-spacing: 3px; margin-top: 30px;">© 2026 VELOX MANAGEMENT GROUP. ALL RIGHTS RESERVED.</p>
+</footer>
+
+</body>
+</html>
